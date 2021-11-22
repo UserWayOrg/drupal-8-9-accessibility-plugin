@@ -1,0 +1,11 @@
+.gitignore export-ignore
+.gitattributes export-ignore
+.github export-ignore
+.git export-ignore
+.VERSION export-ignore
+composer.json export-ignore
+Makefile export-ignore
+README.md export-ignore
+userway.install export-ignore
+userway.module export-ignore
+# just write "<filename or folder name> export-ignore" to exclude it from tag
