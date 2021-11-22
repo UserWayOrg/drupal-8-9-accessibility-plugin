@@ -30,7 +30,7 @@ class ConfigurationController extends ControllerBase {
       $widgetAccount = $widgetData['account'] ?: '';
     }
 
-    $frameUrl = "https://api.userway.org/api/apps/drupal?storeUrl={$rootUrl}";
+    $frameUrl = "https://api.qa.userway.dev/api/apps/drupal?storeUrl={$rootUrl}";
 
     if ($widgetAccount !== '') {
       $frameUrl .= '&account_id=' . $widgetAccount;
