@@ -39,6 +39,8 @@ class AccountController extends ControllerBase {
         ->execute();
     }
 
+    drupal_flush_all_caches();
+
     return new JsonResponse(['account' => $accountId, 'status' => $status]);
   }
 
