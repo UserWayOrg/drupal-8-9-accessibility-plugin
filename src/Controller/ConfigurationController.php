@@ -20,7 +20,10 @@ class ConfigurationController extends ControllerBase {
     $database = Drupal::database();
     $query = $database->query('SELECT account, status FROM {userway_data} LIMIT 1');
     $widgetData = $query->fetchAssoc();
-    $rootUrl = rtrim(\Drupal\Core\Url::fromUserInput('/', ['absolute' => TRUE])->toString(), '/');
+    $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"], 0, strpos($_SERVER["SERVER_PROTOCOL"], '/'))) . '://';
+    $rootUrl = rtrim(\Drupal\Core\Url::fromUserInput('/', ['absolute' => TRUE])
+      ->toString(), '/');
+    $rootUrl = str_replace('http://', $protocol, $rootUrl);
 
     if (isset($widgetData['account']) && isset($widgetData['status'])) {
       $widgetState = $widgetData['status'] === '1' ? 'true' : 'false';

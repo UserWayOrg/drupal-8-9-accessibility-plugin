@@ -17,7 +17,7 @@
     }
 
     const requestUpdateAccountState = (url, accountId, state) => {
-      return request(url + '/admin/userway/account?accountId=' + accountId + '&state=' + state, {
+      return request(url + 'admin/userway/account?accountId=' + accountId + '&state=' + state, {
         accountId,
         state
       })
@@ -41,11 +41,14 @@
         && postMessage.data.action === MESSAGE_ACTION_SIGNUP
     }
 
-    function stripTrailingSlash(str) {
-      if (str.substr(-1) === '/') {
-        return str.substr(0, str.length - 1);
+    const prepareUrl = (url)  => {
+      let preparedUrl = url;
+      if (url.substr(-1) === '/') {
+        preparedUrl = url.substr(0, url.length - 1);
       }
-      return str;
+
+      preparedUrl = url.replace('http', window.location.protocol.replace(/:/g,''))
+      return preparedUrl;
     }
 
     const selector = document.getElementById('userway-frame');
@@ -53,12 +56,13 @@
 
     const {url} = selector.dataset;
 
-
     window.addEventListener('message', postMessage => {
       if (!postMessage || postMessage.source !== frameContentWindow) {
-        console.log('postMessage -> missed data');
+        console.log('postMessage -> missed some data', postMessage);
         return;
       }
+
+      const requestUrl = decodeURIComponent(prepareUrl(url));
 
       console.log('postMessage -> ', postMessage);
       console.log('postMessage data -> ', postMessage.data);
@@ -75,7 +79,7 @@
           return
         }
 
-        requestUpdateAccountState(decodeURIComponent(stripTrailingSlash(url)), account, state)
+        requestUpdateAccountState(requestUrl, account, state)
           .then(res => console.log(res))
           .catch(err => console.error(err));
 
@@ -88,7 +92,7 @@
           return
         }
 
-        requestUpdateAccountState(decodeURIComponent(stripTrailingSlash(url)), account, state)
+        requestUpdateAccountState(requestUrl, account, state)
           .then(res => console.log(res))
           .catch(err => console.error(err));
       }
