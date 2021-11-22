@@ -20,8 +20,7 @@ class ConfigurationController extends ControllerBase {
     $database = Drupal::database();
     $query = $database->query('SELECT account, status FROM {userway_data} LIMIT 1');
     $widgetData = $query->fetchAssoc();
-    $rootUrl = rtrim(\Drupal\Core\Url::fromUserInput('/', ['absolute' => TRUE])
-      ->toString(), '/');
+    $rootUrl = rtrim(\Drupal\Core\Url::fromUserInput('/', ['absolute' => TRUE])->toString(), '/');
 
     if (isset($widgetData['account']) && isset($widgetData['status'])) {
       $widgetState = $widgetData['status'] === '1' ? 'true' : 'false';
