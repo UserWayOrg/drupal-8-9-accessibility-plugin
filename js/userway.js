@@ -47,7 +47,7 @@
         preparedUrl = url.substr(0, url.length - 1);
       }
 
-      preparedUrl = url.replace('http', window.location.protocol.replace(/:/g,''))
+      preparedUrl = url.replace(/^http$/g, window.location.protocol.replace(/:/g,''))
       return preparedUrl;
     }
 
