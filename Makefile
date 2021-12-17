@@ -11,6 +11,7 @@ clean:
 build:
 	mkdir drupal-8-9-accessibility-plugin;
 	cp -r js drupal-8-9-accessibility-plugin;
+	cp -r composer.json drupal-8-9-accessibility-plugin;
 	cp -r src drupal-8-9-accessibility-plugin;
 	cp -r *.yml templates drupal-8-9-accessibility-plugin;
 	cp -r *.install templates drupal-8-9-accessibility-plugin;
