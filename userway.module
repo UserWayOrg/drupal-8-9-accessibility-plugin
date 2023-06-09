@@ -22,7 +22,7 @@ function userway_page_attachments_alter(array &$page) {
       [
         '#type' => 'html_tag',
         '#tag' => 'script',
-        '#attributes' => ['src' => 'https://cdn.qa.userway.dev/widget.js?account=' . $widgetData['account']],
+        '#attributes' => ['src' => 'https://cdn.userway.org/widget.js?account=' . $widgetData['account']],
       ],
       'userway',
     ];
